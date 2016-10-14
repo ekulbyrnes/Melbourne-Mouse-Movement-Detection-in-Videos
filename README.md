@@ -11,6 +11,7 @@ Part2:
 
 * Develop an app (web or offline) which allows a user to quickly skip the video to identified periods
 * Allow users to mark time periods where mce are having seizures using the GUI
+
 # Data Available
 * 3 video clips of varying time lengths which monitors 2 mice simultaneously
 
