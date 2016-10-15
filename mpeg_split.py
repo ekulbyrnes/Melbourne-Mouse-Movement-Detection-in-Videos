@@ -34,5 +34,8 @@ with open(f + ".csv", 'r') as csvfile:
                     "-" + str(endtime) + ".mp4")
                 starttime = nexttime - 2
                 endtime = starttime + windowsize
-# behaviour at end of video is undefined - need to find way of dealing with it
-# len(list(csreader))
+    # run ffmpeg over last segment
+    os.system(
+        "ffmpeg -i " + f + ".mp4 -ss " + str(starttime) + " -to " +
+        str(endtime) + " -async 1 " + f + "_" + str(starttime) +
+        "-" + str(endtime) + ".mp4")
