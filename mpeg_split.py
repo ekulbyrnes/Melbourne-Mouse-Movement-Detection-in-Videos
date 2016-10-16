@@ -25,37 +25,37 @@ with open(f + ".csv", 'r') as csvfile:
                     starttime = starttime - 2  # add 2 seconds before motion
                     filestart = False
                     endtime = starttime + windowsize
-                else:
-                    nexttime = int(row[1]) * 60 + int(row[2])
-                    if (nexttime < endtime) and (nexttime > endtime - windowextension):
-                        endtime = nexttime + windowextension
-                    elif (nexttime > endtime):
-                        # run ffmpeg here
-                        if (endtime - starttime) > hardlimit:
-                            endtime = starttime + hardlimit
-                            os.system(
-                                "ffmpeg -i " + f + ".mp4 -ss " +
-                                str(starttime) + " -to " + str(endtime) +
-                                " -async 1 " + f + "_" + str(starttime) +
-                                "-" + str(endtime) + ".mp4")
-                            os.system(
-                                "ffmpeg -i " + f + ".mp4 -ss " +
-                                str(starttime) + " -vframes 1 " + f + "_" +
-                                str(starttime) + "-" + str(endtime) + ".png")
-                            starttime = starttime + hardlimit - 2
-                            endtime = starttime + windowsize
-                        else:
-                            os.system(
-                                "ffmpeg -i " + f + ".mp4 -ss " +
-                                str(starttime) + " -to " + str(endtime) +
-                                " -async 1 " + f + "_" + str(starttime) +
-                                "-" + str(endtime) + ".mp4")
-                            os.system(
-                                "ffmpeg -i " + f + ".mp4 -ss " +
-                                str(starttime) + " -vframes 1 " + f + "_" +
-                                str(starttime) + "-" + str(endtime) + ".png")
-                            starttime = nexttime - 2
-                            endtime = starttime + windowsize
+            else:
+                nexttime = int(row[1]) * 60 + int(row[2])
+                if (nexttime < endtime) and (nexttime > endtime - windowextension):
+                    endtime = nexttime + windowextension
+                elif (nexttime > endtime):
+                    # run ffmpeg here
+                    if (endtime - starttime) > hardlimit:
+                        endtime = starttime + hardlimit
+                        os.system(
+                            "ffmpeg -i " + f + ".mp4 -ss " +
+                            str(starttime) + " -to " + str(endtime) +
+                            " -async 1 " + f + "_" + str(starttime) +
+                            "-" + str(endtime) + ".mp4")
+                        os.system(
+                            "ffmpeg -i " + f + ".mp4 -ss " +
+                            str(starttime) + " -vframes 1 " + f + "_" +
+                            str(starttime) + "-" + str(endtime) + ".png")
+                        starttime = starttime + hardlimit - 2
+                        endtime = starttime + windowsize
+                    else:
+                        os.system(
+                            "ffmpeg -i " + f + ".mp4 -ss " +
+                            str(starttime) + " -to " + str(endtime) +
+                            " -async 1 " + f + "_" + str(starttime) +
+                            "-" + str(endtime) + ".mp4")
+                        os.system(
+                            "ffmpeg -i " + f + ".mp4 -ss " +
+                            str(starttime) + " -vframes 1 " + f + "_" +
+                            str(starttime) + "-" + str(endtime) + ".png")
+                        starttime = nexttime - 2
+                        endtime = starttime + windowsize
     # run ffmpeg over last segment
     os.system(
         "ffmpeg -i " + f + ".mp4 -ss " + str(starttime) + " -to " +
