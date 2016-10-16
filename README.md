@@ -6,6 +6,7 @@ Going through these videos is a tedious process, when there are long periods whe
 # Technical details
 Part 1:
 * Identify periods of the video where mice are active (ex: walking, eating, drinking)
+* https://www.youtube.com/watch?v=0sYmo54EmaA&feature=youtu.be
 
 Part2:
 
